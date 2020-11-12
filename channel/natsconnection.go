@@ -15,10 +15,13 @@ type NatsConnection struct {
 }
 
 // NewNatsConnection creates new connection
-func NewNatsConnection(natsServerURLs []string, natsConnectionName string) (*NatsConnection, error) {
+func NewNatsConnection(natsServerURLs []string, natsConnectionName string, token string) (*NatsConnection, error) {
 	nc, err := natsio.Connect(
-		strings.Join(natsServerURLs, ","), natsio.Name(natsConnectionName), natsio.Timeout(10*time.Second),
-		natsio.PingInterval(20*time.Second), natsio.MaxPingsOutstanding(5), natsio.ReconnectBufSize(10*1024*1024), natsio.NoEcho())
+		strings.Join(natsServerURLs, ","), natsio.Name(natsConnectionName),
+		natsio.Timeout(10*time.Second), natsio.PingInterval(20*time.Second),
+		natsio.MaxPingsOutstanding(5),
+		natsio.ReconnectBufSize(10*1024*1024),
+		natsio.NoEcho(), natsio.Token(token))
 	if err != nil {
 		return nil, err
 	}

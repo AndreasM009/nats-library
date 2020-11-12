@@ -13,8 +13,8 @@ type NatsChannel struct {
 }
 
 // NewNatsChannel new instance
-func NewNatsChannel(channelName string, natsServerURLs []string, natsConnectionName string) (*NatsChannel, error) {
-	con, err := NewNatsConnection(natsServerURLs, natsConnectionName)
+func NewNatsChannel(channelName string, natsServerURLs []string, natsConnectionName, token string) (*NatsChannel, error) {
+	con, err := NewNatsConnection(natsServerURLs, natsConnectionName, token)
 	if err != nil {
 		return nil, err
 	}

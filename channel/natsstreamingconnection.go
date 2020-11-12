@@ -11,8 +11,8 @@ type NatsStreamingConnection struct {
 }
 
 // NewNatsStreamingConnection new nats streaming server connection
-func NewNatsStreamingConnection(natsServerURLs []string, natsConnectionName string, clusterID string, clientID string) (*NatsStreamingConnection, error) {
-	nc, err := NewNatsConnection(natsServerURLs, natsConnectionName)
+func NewNatsStreamingConnection(natsServerURLs []string, natsConnectionName, clusterID, clientID, token string) (*NatsStreamingConnection, error) {
+	nc, err := NewNatsConnection(natsServerURLs, natsConnectionName, token)
 	if err != nil {
 		return nil, err
 	}
